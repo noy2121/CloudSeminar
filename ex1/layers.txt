@@ -1,0 +1,3 @@
+I created the Lambda layer by packaging the openai python library into a ZIP file using a compatible environment (had some issues in that part...).
+Afterwards I uploaded it to S3 and make Lambda pull the layer from there.
+Finally, I attached the layer to my Lambda function. 
