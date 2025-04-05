@@ -24,7 +24,7 @@ def get_current_timestamp() -> int:
     return int(time.time() * 1000)
 
 
-def get_last_messages(user_id: str) -> List[Dict[str, Any]]:
+def get_last_messages(table, user_id: str) -> List[Dict[str, Any]]:
     if not user_id:
         return []
 
@@ -94,8 +94,8 @@ def lambda_handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         
         ai_reply = response.choices[0].message.content
 
-        save_message(user_id, "user", user_prompt)
-        save_message(user_id, "assistant", ai_reply)
+        save_message(table, user_id, "user", user_prompt)
+        save_message(table, user_id, "assistant", ai_reply)
 
         return build_response(200, {"ai_reply": ai_reply})
         
